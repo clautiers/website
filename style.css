@@ -11,6 +11,7 @@
     --transition-med: all 0.4s ease;
     --font-heading: 'Cormorant Garamond', serif;
     --font-body: 'Montserrat', sans-serif;
+    --nav-height: 80px;
 }
 
 * {
@@ -25,6 +26,230 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
+    padding-top: 0;
+}
+
+/* Navbar */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    z-index: 2000;
+    transition: var(--transition-med);
+    background: transparent;
+}
+
+nav.scrolled {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+    height: 70px;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-color);
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 300;
+    transition: var(--transition-med);
+    opacity: 0.7;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    opacity: 1;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+}
+
+/* Subpage Header */
+.page-header {
+    padding: 160px 0 80px;
+    background: linear-gradient(to bottom, #111, #000);
+    text-align: center;
+}
+
+.page-header h1 {
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: #888;
+    max-width: 600px;
+    margin: 0 auto;
+    letter-spacing: 1px;
+}
+
+/* Grid for Songs & News */
+.cards-container {
+    padding: 60px 0 120px;
+}
+
+.grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.song-card,
+.news-card,
+.review-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    transition: var(--transition-med);
+    display: flex;
+    flex-direction: column;
+}
+
+.song-card:hover,
+.news-card:hover,
+.review-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.song-img {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.song-info h3,
+.news-info h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.song-meta,
+.news-meta {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+/* Review specific */
+.review-text {
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    color: #eee;
+}
+
+.reviewer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.reviewer-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    flex-shrink: 0;
+}
+
+.reviewer-info h4 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.reviewer-info span {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Social Feed */
+.social-feed {
+    padding-bottom: 100px;
+}
+
+.social-masonry {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.social-post {
+    background: #0a0a0a;
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.social-post img,
+.social-post video {
+    width: 100%;
+    display: block;
+}
+
+.social-post-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    opacity: 0;
+    transition: var(--transition-med);
+}
+
+.social-post:hover .social-post-overlay {
+    opacity: 1;
 }
 
 /* Loader */
@@ -229,6 +454,33 @@ body.scrolled .social-container {
     transform: translateY(-5px);
     color: #ccc;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Instagram Style Button */
+.btn-instagram {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: var(--transition-med);
+    border: none;
+    box-shadow: 0 10px 20px rgba(188, 24, 136, 0.3);
+}
+
+.btn-instagram:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(188, 24, 136, 0.5);
+    filter: brightness(1.1);
+}
+
+.btn-instagram i {
+    font-size: 1.4rem;
 }
 
 /* About Section */
@@ -694,5 +946,35 @@ footer {
 
     .event-dot {
         left: -36px;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 2001;
+        gap: 40px;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .menu-toggle {
+        display: block;
+        z-index: 2002;
+    }
+
+    .page-header h1 {
+        font-size: 3rem;
     }
 }

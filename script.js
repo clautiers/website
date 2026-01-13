@@ -51,12 +51,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const progress = (window.pageYOffset / totalHeight) * 100;
         scrollBar.style.width = progress + '%';
 
-        if (window.pageYOffset > window.innerHeight * 0.5) {
+        if (window.pageYOffset > window.innerHeight * 0.1) {
             document.body.classList.add('scrolled');
+            document.querySelector('nav').classList.add('scrolled');
         } else {
             document.body.classList.remove('scrolled');
+            document.querySelector('nav').classList.remove('scrolled');
         }
     });
+
+    // Menu Toggle Logic
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.replace('fa-bars', 'fa-times');
+            } else {
+                icon.classList.replace('fa-times', 'fa-bars');
+            }
+        });
+
+        // Close menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
+        });
+    }
 
     // Aggressive Zoom effect on hero background
     window.addEventListener('scroll', () => {
