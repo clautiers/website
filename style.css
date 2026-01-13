@@ -155,7 +155,7 @@ body {
 /* Responsive Overrides */
 @media (max-width: 768px) {
     .hero {
-        background-image: url('cell1.png');
+        background-image: url('cell1.webp');
     }
 
     .hero-content {
